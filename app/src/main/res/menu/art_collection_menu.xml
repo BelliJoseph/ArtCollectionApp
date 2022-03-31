@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/DepartmentFragment"
+        android:title="Search by Department"
+        android:icon="@drawable/department">
+
+    </item>
+
+    <item
+        android:id="@+id/MainFragment"
+        android:title="Main"
+        android:icon="@drawable/home">
+
+    </item>
+
+    <item
+        android:id="@+id/SearchFragment"
+        android:title="Search by Criteria"
+        android:icon="@drawable/search">
+
+    </item>
+
+</menu>
