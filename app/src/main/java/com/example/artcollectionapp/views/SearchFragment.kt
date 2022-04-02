@@ -22,7 +22,7 @@ class SearchFragment : BaseFragment() {
     ): View? {
 
 
-        binding.button.setOnClickListener {
+        binding.searchButton.setOnClickListener {
             findNavController().navigate(R.id.action_SearchFragment_to_DisplayFragment)
         }
 

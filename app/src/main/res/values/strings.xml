@@ -4,5 +4,18 @@
     <string name="departmentTitle">Department Name:</string>
     <string name="defaultString">Default String</string>
     <string name="departmentListTitle">Art Departments List</string>
-    <string name="departmentListClickMsg">Click on your desired department to view collection</string>
+    <string name="departmentListClickMsg">Click on the desired department\n to view collection</string>
+    <string name="searchTitle">Search Art Collection</string>
+    <string name="searchMessage">Use the text fields to narrow collection search\n to your specifications</string>
+    <string name="searchUseCase">* You can use all the fields or just one field *</string>
+    <string name="searchKeyword">Search Art by Keyword</string>
+    <string name="searchKeywordHint">Enter a keyword here to refine search (Example: Birds)</string>
+    <string name="searchHasImages">Check the box for art only with images</string>
+    <string name="searchGeoLoc">Geographical Location (origin of artwork)</string>
+    <string name="searchGeoLocHint">Enter the Geographical location here (Example: Africa)</string>
+    <string name="searchYearBegin">Limit search to art created after a certain year</string>
+    <string name="searchYearBeginHint">Enter a year for art after this date (Example: 1700)</string>
+    <string name="searchYearEnd">Limit search to art created before a certain year</string>
+    <string name="searchYearEndHint">Enter a year for art before this date (Example: 1900)</string>
+    <string name="searchButton">Search</string>
 </resources>

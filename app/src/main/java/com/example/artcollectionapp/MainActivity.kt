@@ -28,6 +28,10 @@ class MainActivity : AppCompatActivity() {
 
         bottomNavigation.setupWithNavController(navController)
 
+        if(supportActionBar != null){
+            supportActionBar?.hide()
+        }
+
         navController.addOnDestinationChangedListener{_, nc: NavDestination, _->
             if(nc.id == R.id.DepartmentFragment ||
                 nc.id == R.id.SearchFragment || nc.id == R.id.MainFragment){
