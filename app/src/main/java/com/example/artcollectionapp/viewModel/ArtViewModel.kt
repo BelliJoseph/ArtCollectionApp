@@ -18,7 +18,15 @@ class ArtViewModel @Inject constructor(
     private val coroutineDispatcher: CoroutineDispatcher
 ) : ViewModel(){
 
+    //department fragment variable
     var departmentChoice : DepartmentX? = null
+
+    //search fragment variables
+    var imageOnly : Boolean? = null
+    var keyWord: String? = null
+    var location : String? = null
+    var yearStart : String? = null
+    var yearEnd : String? = null
 
     private val _artLiveData : MutableLiveData<ResultState> = MutableLiveData(ResultState.LOADING)
     val artLiveData: LiveData<ResultState> get() = _artLiveData

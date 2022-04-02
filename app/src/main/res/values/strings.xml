@@ -28,5 +28,8 @@
     <string name="searchYearBeginHint">Enter a year for art after this date (Example: 1700)</string>
     <string name="searchYearEnd">Limit search to art created before a certain year</string>
     <string name="searchYearEndHint">Enter a year for art before this date (Example: 1900)</string>
+    <string name="yearFormatError">One of the year text fields are out of range!</string>
+    <string name="yearFieldsError">Please enter a year in both start and end dates!</string>
+    <string name="nothingEnteredError">Please use at least Keyword or Location to refine search!</string>
     <string name="searchButton">Search</string>
 </resources>
