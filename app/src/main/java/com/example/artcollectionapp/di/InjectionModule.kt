@@ -1,12 +1,17 @@
 package com.example.artcollectionapp.di
 
+import com.example.artcollectionapp.repository.ArtRepository
+import com.example.artcollectionapp.repository.ArtRepositoryImpl
 import com.example.artcollectionapp.rest.ArtCollectionAPI
+import com.example.artcollectionapp.viewModel.ArtViewModel
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.Dispatchers
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -45,5 +50,18 @@ class InjectionModule {
             .client(okHttpClient)
             .build()
             .create(ArtCollectionAPI::class.java)
+
+    @Provides
+    fun providesRepository(artCollectionAPI: ArtCollectionAPI): ArtRepository =
+        ArtRepositoryImpl(artCollectionAPI)
+
+    @Provides
+    fun providesDispatcher(): CoroutineDispatcher = Dispatchers.IO
+
+    @Provides
+    fun providesViewModel(
+        artRepository: ArtRepository,
+        dispatcher: CoroutineDispatcher
+    ): ArtViewModel = ArtViewModel(artRepository, dispatcher)
 
 }

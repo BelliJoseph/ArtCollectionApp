@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import com.example.artcollectionapp.R
 
 
-class DetailsFragment : Fragment() {
+class DetailsFragment : BaseFragment() {
 
 
     override fun onCreateView(

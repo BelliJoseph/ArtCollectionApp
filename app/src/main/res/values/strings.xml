@@ -1,5 +1,8 @@
 <resources>
     <string name="app_name">ArtCollectionApp</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="departmentTitle">Department Name:</string>
+    <string name="defaultString">Default String</string>
+    <string name="departmentListTitle">Art Departments List</string>
+    <string name="departmentListClickMsg">Click on your desired department to view collection</string>
 </resources>

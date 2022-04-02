@@ -1,6 +1,8 @@
 package com.example.artcollectionapp.rest
 
+import com.example.artcollectionapp.model.`object`.Object
 import com.example.artcollectionapp.model.department.Department
+import com.example.artcollectionapp.model.search.Search
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -14,21 +16,21 @@ interface ArtCollectionAPI {
     @GET(OBJECT_ID)
     suspend fun getObjectID(
         @Path("objectID") objectID: Int
-    )
+    ): Response<Object>
 
     @GET(SEARCH)
     suspend fun searchCollection(
-        @Query("q") searchQuery: String? = null,
+        @Query("q") searchQuery: String? = "null",
         @Query("hasImages") hasImages: Boolean? = null,
         @Query("geoLocation") geoLocation: String? = null,
         @Query("dateBegin") yearBegin: Int? = null,
         @Query("dateEnd") yearEnd: Int? = null
-    )
+    ): Response<Search>
 
     @GET(OBJECTS)
     suspend fun getObjectsByDepartment(
         @Query("departmentIds") departmentId: Int
-    )
+    ): Response<Search>
 
     companion object{
         const val BASE_URL = "https://collectionapi.metmuseum.org/public/collection/v1/"

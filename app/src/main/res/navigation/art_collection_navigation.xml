@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/art_collection_navigation"
-    app:startDestination="@layout/fragment_main">
+    app:startDestination="@id/MainFragment">
 
     <fragment
         android:id="@+id/MainFragment"
@@ -19,6 +19,9 @@
         tools:layout="@layout/fragment_departments"
         android:name="com.example.artcollectionapp.views.DepartmentsFragment">
 
+        <action
+            android:id="@+id/action_DepartmentFragment_to_DisplayFragment"
+            app:destination="@id/DisplayFragment" />
     </fragment>
 
     <fragment
@@ -27,6 +30,10 @@
         tools:layout="@layout/fragment_search"
         android:name="com.example.artcollectionapp.views.SearchFragment">
 
+
+        <action
+            android:id="@+id/action_SearchFragment_to_DisplayFragment"
+            app:destination="@id/DisplayFragment" />
     </fragment>
 
     <fragment
@@ -35,6 +42,9 @@
         tools:layout="@layout/fragment_display_results"
         android:name="com.example.artcollectionapp.views.DisplayResultsFragment">
 
+        <action
+            android:id="@+id/action_DisplayFragment_to_DetailsFragment"
+            app:destination="@id/DetailsFragment" />
     </fragment>
 
     <fragment

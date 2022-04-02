@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import com.example.artcollectionapp.R
 
 
-class DisplayResultsFragment : Fragment() {
+class DisplayResultsFragment : BaseFragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
