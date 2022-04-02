@@ -3,21 +3,21 @@
 
     <item
         android:id="@+id/DepartmentFragment"
-        android:title="Search by Department"
+        android:title="@string/searchDepartments"
         android:icon="@drawable/department">
 
     </item>
 
     <item
         android:id="@+id/MainFragment"
-        android:title="Main"
+        android:title="@string/main"
         android:icon="@drawable/home">
 
     </item>
 
     <item
         android:id="@+id/SearchFragment"
-        android:title="Search by Criteria"
+        android:title="@string/searchByCriteria"
         android:icon="@drawable/search">
 
     </item>

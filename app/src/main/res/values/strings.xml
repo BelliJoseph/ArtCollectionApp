@@ -1,10 +1,21 @@
 <resources>
     <string name="app_name">ArtCollectionApp</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="main">Main</string>
+    <string name="searchDepartments">Search Departments</string>
+    <string name="searchByCriteria">Search by Criteria</string>
+
+    <string name="mainTitle">The Metropolitan Museum\n of Art Application</string>
+    <string name="mainDescription">View the entire art collection\n with images and descriptions</string>
+    <string name="mainSearchLabel">Use the tabs below to search\n the entire art collection</string>
+    <string name="mainImageDescription">Image of the Metropolitan Museum of Art</string>
+
     <string name="departmentTitle">Department Name:</string>
     <string name="defaultString">Default String</string>
     <string name="departmentListTitle">Art Departments List</string>
     <string name="departmentListClickMsg">Click on the desired department\n to view collection</string>
+
     <string name="searchTitle">Search Art Collection</string>
     <string name="searchMessage">Use the text fields to narrow collection search\n to your specifications</string>
     <string name="searchUseCase">* You can use all the fields or just one field *</string>
