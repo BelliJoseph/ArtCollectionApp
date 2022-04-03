@@ -32,4 +32,9 @@
     <string name="yearFieldsError">Please enter a year in both start and end dates!</string>
     <string name="nothingEnteredError">Please use at least Keyword or Location to refine search!</string>
     <string name="searchButton">Search</string>
+
+    <string name="resultsTitle">Art Collection Results</string>
+    <string name="resultsMessage">Click on any piece of art to see more details</string>
+    <string name="resultsGoBack">Go Back</string>
+    <string name="resultsGoBackToMain">Go To Main Menu</string>
 </resources>
