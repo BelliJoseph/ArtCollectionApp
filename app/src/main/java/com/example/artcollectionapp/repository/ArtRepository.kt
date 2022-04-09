@@ -1,23 +1,32 @@
 package com.example.artcollectionapp.repository
 
+import com.example.artcollectionapp.model.`object`.Art
 import com.example.artcollectionapp.rest.ArtCollectionAPI
 import com.example.artcollectionapp.viewModel.ResultState
+import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.CoroutineScope
 import javax.inject.Inject
 import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.launch
+import retrofit2.Response
 import java.lang.Exception
 
 interface ArtRepository {
     fun getDepartmentIDs() : Flow<ResultState>
-    fun getObjectId(objectId: Int): Flow<ResultState>
+    suspend fun getObjectId(objectId: Int): Response<Art>
     fun getObjectsByDepartment(departmentId: Int): Flow<ResultState>
-    fun searchCollection(
-        searchQuery: String?,
-        hasImages: Boolean?,
+    fun searchArtWithDates(
+        hasImages: Boolean,
         geoLocation: String?,
         yearBegin: Int?,
-        yearEnd: Int?
+        yearEnd: Int?,
+        searchQuery: String?
     ): Flow<ResultState>
-
+    fun searchArtWithoutDates(
+        hasImages: Boolean,
+        geoLocation: String?,
+        searchQuery: String?
+    ): Flow<ResultState>
 
 }
 
@@ -40,19 +49,8 @@ class ArtRepositoryImpl @Inject constructor(
         }
     }
 
-    override fun getObjectId(objectId: Int): Flow<ResultState> = flow {
-        try{
-            val response = artCollectionAPI.getObjectID(objectId)
-            if(response.isSuccessful){
-                response.body()?.let {
-                    emit(ResultState.SUCCESS(it))
-                } ?: throw Exception("Get ObjectId no response")
-            }else{
-                throw Exception("Get ObjectId unsuccessful")
-            }
-        }catch (error: Exception){
-            emit(ResultState.ERROR(error))
-        }
+    override suspend fun getObjectId(objectId: Int): Response<Art> {
+        return artCollectionAPI.getObjectID(objectID = objectId)
     }
 
     override fun getObjectsByDepartment(departmentId: Int): Flow<ResultState> = flow {
@@ -70,20 +68,40 @@ class ArtRepositoryImpl @Inject constructor(
         }
     }
 
-    override fun searchCollection(
-        searchQuery: String?,
-        hasImages: Boolean?,
+    override fun searchArtWithDates(
+        hasImages: Boolean,
         geoLocation: String?,
         yearBegin: Int?,
-        yearEnd: Int?
+        yearEnd: Int?,
+        searchQuery: String?
     ): Flow<ResultState> = flow {
         try{
-            val response = artCollectionAPI.searchCollection(
-                searchQuery, hasImages, geoLocation, yearBegin, yearEnd)
+            val response = artCollectionAPI.searchArtWithDates(
+                hasImages, geoLocation, yearBegin, yearEnd, searchQuery)
             if(response.isSuccessful){
                 response.body()?.let {
                     emit(ResultState.SUCCESS(it))
                 } ?: throw Exception("Search Collection no response")
+            }else{
+                throw Exception("Search Collection unsuccessful")
+            }
+        }catch (error: Exception){
+            emit(ResultState.ERROR(error))
+        }
+    }
+
+    override fun searchArtWithoutDates(
+        hasImages: Boolean,
+        geoLocation: String?,
+        searchQuery: String?
+    ): Flow<ResultState> = flow {
+        try{
+            val response = artCollectionAPI.searchArtWithoutDates(
+                hasImages, geoLocation, searchQuery)
+            if(response.isSuccessful){
+                response.body()?.let {
+                    emit(ResultState.SUCCESS(it))
+                }?: throw Exception("Search Collection no response")
             }else{
                 throw Exception("Search Collection unsuccessful")
             }

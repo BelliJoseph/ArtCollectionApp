@@ -1,12 +1,16 @@
 package com.example.artcollectionapp.views
 
+import android.app.AlertDialog
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import com.example.artcollectionapp.R
 import com.example.artcollectionapp.databinding.FragmentSearchBinding
+import com.example.artcollectionapp.model.search.Search
+import com.example.artcollectionapp.viewModel.ResultState
 
 
 class SearchFragment : BaseFragment() {
@@ -15,14 +19,7 @@ class SearchFragment : BaseFragment() {
         FragmentSearchBinding.inflate(layoutInflater)
     }
 
-    private var proceed: Boolean = true
-
-    private var imagesOnly: Boolean? = null
-    private var keyWord: String? = null
-    private var geoLocation: String? = null
-    private var beginYear: String? = null
-    private var endYear: String? = null
-
+    private var withDates: Boolean = false
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -32,77 +29,128 @@ class SearchFragment : BaseFragment() {
         val imageCheckBox = binding.searchImagesCheckBox
 
         imageCheckBox.setOnClickListener {
-            imagesOnly = imageCheckBox.isChecked
+            artViewModel.imagesOnly = imageCheckBox.isChecked
         }
 
         binding.searchButton.setOnClickListener {
-            proceed = true
-            keyWord = null
-            geoLocation = null
-            beginYear = null
-            endYear = null
-            binding.searchNothingEnteredError.visibility = View.GONE
-            binding.searchYearError.visibility = View.GONE
-            binding.searchYearFieldsError.visibility = View.GONE
+            resetAllValues()
+            checkAllFields()
 
-            val keyword = binding.searchKeywordEdit.text
-            if(keyword.trim().isNotEmpty()){
-                keyWord = keyword.trim().toString()
-            }
+            val validation = artViewModel.userValidation()
+            if(validation.dateEntered){
 
-            val location = binding.searchOriginEdit.text
-            if(location.trim().isNotEmpty()){
-                geoLocation = location.trim().toString()
-            }
+                if(validation.yearFormatted){
 
-            val yearBegin = binding.searchYearBeginEdit.text
-            if(yearBegin.trim().isNotEmpty()){
-                if(yearBegin.length <= 4){
-                    beginYear = yearBegin.trim().toString()
-                }else{
-                    proceed = false
-                    binding.searchYearError.visibility = View.VISIBLE
-                }
-            }
-
-            val yearEnd = binding.searchYearEndEdit.text
-            if(yearEnd.trim().isNotEmpty()){
-                if(yearEnd.length <= 4){
-                    endYear = yearBegin.trim().toString()
-                }else{
-                    proceed = false
-                    binding.searchYearError.visibility = View.VISIBLE
-                }
-            }
-
-            if(proceed){
-                if(keyWord != null || geoLocation != null){
-                    if(beginYear != null && endYear != null){
-                        populateFields()
-                        findNavController().navigate(R.id.action_SearchFragment_to_DisplayFragment)
-                    }else if(beginYear != null || endYear != null){
-                        binding.searchYearFieldsError.visibility = View.VISIBLE
+                    if(validation.bothYearsEntered){
+                        withDates = true
                     }else{
-                        populateFields()
-                        findNavController().navigate(R.id.action_SearchFragment_to_DisplayFragment)
+                        binding.searchYearFieldsError.visibility = View.VISIBLE
                     }
 
                 }else{
-                    binding.searchNothingEnteredError.visibility = View.VISIBLE
+                    binding.searchYearError.visibility = View.VISIBLE
                 }
             }
+
+            if(!validation.dateEntered || withDates){
+                if(validation.keywordEntered){
+                    artViewModel.resultsFullList.clear()
+                    getListOfArt()
+                }else{
+                    binding.searchNoKeywordEnteredError.visibility = View.VISIBLE
+                }
+            }
+
         }
 
         // Inflate the layout for this fragment
         return binding.root
     }
 
-    private fun populateFields(){
-        artViewModel.imageOnly = imagesOnly
-        artViewModel.keyWord = keyWord
-        artViewModel.location = geoLocation
-        artViewModel.yearStart = beginYear
-        artViewModel.yearEnd = endYear
+    private fun getListOfArt(){
+        if(withDates){
+            artViewModel.searchArtWithDates(
+                artViewModel.imagesOnly,
+                artViewModel.geoLocation,
+                artViewModel.beginYear,
+                artViewModel.endYear,
+                artViewModel.keyWord)
+        }else{
+            artViewModel.searchArtWithoutDates(
+                artViewModel.imagesOnly,
+                artViewModel.geoLocation,
+                artViewModel.keyWord)
+        }
+
+        artViewModel.artLiveData.observe(viewLifecycleOwner){ state ->
+            when(state){
+                is ResultState.LOADING ->{
+                    binding.searchProgressBar.visibility = View.VISIBLE
+                }
+                is ResultState.SUCCESS<*> ->{
+                    Log.d("getListOfArt", "Success")
+                    binding.searchProgressBar.visibility = View.GONE
+
+                    val objectList: Search = state.response as Search
+                    Log.d("getListOfArt","objectList size:" + objectList.total.toString())
+                    artViewModel.resultsFullList.addAll(objectList.objectIDs)
+                    findNavController().navigate(R.id.action_SearchFragment_to_DisplayFragment)
+                    Log.d("getListOfArt()", "resultsFullList Total: " + artViewModel.resultsFullList.size.toString())
+                }
+                is ResultState.ERROR ->{
+                    AlertDialog.Builder(requireContext())
+                        .setMessage("There was a problem getting the list of Art")
+                        .setPositiveButton("Dismiss"){
+                                DialogInterface, i->
+                            DialogInterface.dismiss() }
+                        .create()
+                        .show()
+                }
+            }
+
+        }
+
+    }
+
+    private fun checkAllFields(){
+        val keyword = binding.searchKeywordEdit.text
+        artViewModel.keyWord = if(keyword.trim().isNotEmpty()){
+            val temp = keyword.trim().toString()
+            temp.replaceFirstChar { it.uppercase() }
+        }else{
+            null
+        }
+
+        val location = binding.searchOriginEdit.text
+        artViewModel.geoLocation = if(location.trim().isNotEmpty()){
+            location.trim().toString()
+        }else{
+            null
+        }
+
+        val yearBegin = binding.searchYearBeginEdit.text.toString()
+        artViewModel.beginYear = if(yearBegin.trim().isNotEmpty()){
+            yearBegin.trim().toInt()
+
+        }else{
+            null
+        }
+
+        val yearEnd = binding.searchYearEndEdit.text.toString()
+        artViewModel.endYear = if(yearEnd.trim().isNotEmpty()){
+            yearEnd.trim().toInt()
+
+        }else{
+            null
+        }
+    }
+
+    private fun resetAllValues(){
+        withDates = false
+
+        binding.searchNoKeywordEnteredError.visibility = View.GONE
+        binding.searchYearError.visibility = View.GONE
+        binding.searchYearFieldsError.visibility = View.GONE
     }
 
 }

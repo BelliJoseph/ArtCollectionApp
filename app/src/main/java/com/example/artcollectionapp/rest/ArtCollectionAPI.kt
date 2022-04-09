@@ -1,6 +1,6 @@
 package com.example.artcollectionapp.rest
 
-import com.example.artcollectionapp.model.`object`.Object
+import com.example.artcollectionapp.model.`object`.Art
 import com.example.artcollectionapp.model.department.Department
 import com.example.artcollectionapp.model.search.Search
 import retrofit2.Response
@@ -16,15 +16,22 @@ interface ArtCollectionAPI {
     @GET(OBJECT_ID)
     suspend fun getObjectID(
         @Path("objectID") objectID: Int
-    ): Response<Object>
+    ): Response<Art>
 
     @GET(SEARCH)
-    suspend fun searchCollection(
-        @Query("q") searchQuery: String? = "null",
-        @Query("hasImages") hasImages: Boolean? = null,
+    suspend fun searchArtWithDates(
+        @Query("hasImages") hasImages: Boolean = false,
         @Query("geoLocation") geoLocation: String? = null,
         @Query("dateBegin") yearBegin: Int? = null,
-        @Query("dateEnd") yearEnd: Int? = null
+        @Query("dateEnd") yearEnd: Int? = null,
+        @Query("q") searchQuery: String? = null
+    ): Response<Search>
+
+    @GET(SEARCH)
+    suspend fun searchArtWithoutDates(
+        @Query("hasImages") hasImages: Boolean,
+        @Query("geoLocation") geoLocation: String? = null,
+        @Query("q") searchQuery: String? = null
     ): Response<Search>
 
     @GET(OBJECTS)

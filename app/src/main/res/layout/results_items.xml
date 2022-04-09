@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_margin="5dp"
+    android:elevation="15dp"
+    app:cardCornerRadius="15dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/resultItemImage"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginStart="5dp"/>
+
+        <TextView
+            android:id="@+id/resultsArtistLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/resultsArtistName"
+            android:layout_toRightOf="@id/resultItemImage"
+            android:layout_marginStart="2dp"
+            android:layout_marginTop="7dp"/>
+
+        <TextView
+            android:id="@+id/resultsArtist"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/defaultString"
+            android:layout_toRightOf="@id/resultsArtistLabel"
+            android:layout_marginTop="7dp"
+            android:layout_marginStart="3dp"/>
+
+        <TextView
+            android:id="@+id/resultsArtNameLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/resultsArtName"
+            android:layout_below="@id/resultsArtistLabel"
+            android:layout_toRightOf="@id/resultItemImage"
+            android:layout_marginStart="2dp"
+            android:layout_marginTop="7dp"/>
+
+        <TextView
+            android:id="@+id/resultsArtName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/defaultString"
+            android:layout_below="@id/resultsArtist"
+            android:layout_toRightOf="@id/resultsArtNameLabel"
+            android:layout_marginTop="7dp"
+            android:layout_marginStart="3dp"/>
+
+        <TextView
+            android:id="@+id/resultsCultureLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/resultsCulture"
+            android:layout_below="@id/resultsArtNameLabel"
+            android:layout_toRightOf="@id/resultItemImage"
+            android:layout_marginStart="2dp"
+            android:layout_marginTop="7dp"/>
+
+        <TextView
+            android:id="@+id/resultsCulture"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/defaultString"
+            android:layout_below="@id/resultsArtName"
+            android:layout_toRightOf="@id/resultsCultureLabel"
+            android:layout_marginTop="7dp"
+            android:layout_marginStart="2dp"/>
+
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>

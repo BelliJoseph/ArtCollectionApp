@@ -1,14 +1,285 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".views.DetailsFragment">
+    android:fillViewport="true"
+    android:background="@color/snow3">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content"
+        tools:context=".views.DetailsFragment">
 
-</FrameLayout>
+        <TextView
+            android:id="@+id/detailsTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/detailsTitle"
+            android:textColor="@color/black"
+            android:textSize="25sp"
+            android:padding="5dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/detailsMainImage"
+            android:layout_width="200dp"
+            android:layout_height="150dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/detailsTitle" />
+
+        <ImageView
+            android:id="@+id/detailsImage2"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="10dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/detailsMainImage" />
+
+        <ImageView
+            android:id="@+id/detailsImage3"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_marginEnd="50dp"
+            android:layout_marginTop="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/detailsMainImage" />
+
+        <TextView
+            android:id="@+id/detailsCultureLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="20dp"
+            android:text="@string/detailsArtCulture"
+            android:textColor="@color/black"
+            android:textSize="15sp"
+            android:padding="5dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/detailsImage2" />
+
+        <TextView
+            android:id="@+id/detailsCultureEdit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/detailsDefault"
+            android:textColor="@color/black"
+            android:textSize="15sp"
+            android:padding="5dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="40dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/detailsCultureLabel"
+            app:layout_constraintTop_toBottomOf="@+id/detailsImage2" />
+
+        <TextView
+            android:id="@+id/detailsPeriodLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/detailsArtPeriod"
+            android:textColor="@color/black"
+            android:textSize="15sp"
+            android:padding="5dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginStart="40dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/detailsCultureLabel" />
+
+        <TextView
+            android:id="@+id/detailsPeriodEdit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:text="@string/detailsDefault"
+            android:textSize="15sp"
+            android:textColor="@color/black"
+            android:layout_marginTop="15dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="40dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/detailsPeriodLabel"
+            app:layout_constraintTop_toBottomOf="@+id/detailsCultureEdit" />
+
+        <TextView
+            android:id="@+id/detailsArtistNameLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:text="@string/detailsArtistName"
+            android:textColor="@color/black"
+            android:textSize="15sp"
+            android:layout_marginTop="15dp"
+            android:layout_marginStart="40dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/detailsPeriodLabel" />
+
+        <TextView
+            android:id="@+id/detailsArtistNameEdit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:text="@string/detailsDefault"
+            android:textColor="@color/black"
+            android:textSize="15sp"
+            android:layout_marginTop="15dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="40dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/detailsArtistNameLabel"
+            app:layout_constraintTop_toBottomOf="@+id/detailsPeriodEdit" />
+
+        <TextView
+            android:id="@+id/detailsArtistBioLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:text="@string/detailsArtistBio"
+            android:textColor="@color/black"
+            android:textSize="15sp"
+            android:layout_marginTop="15dp"
+            android:layout_marginStart="40dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/detailsArtistNameLabel" />
+
+        <TextView
+            android:id="@+id/detailsArtistBioEdit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:text="@string/detailsDefault"
+            android:textColor="@color/black"
+            android:textSize="15sp"
+            android:layout_marginTop="15dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="40dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/detailsArtistBioLabel"
+            app:layout_constraintTop_toBottomOf="@+id/detailsArtistNameEdit" />
+
+        <TextView
+            android:id="@+id/detailsArtistGenderLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:text="@string/detailsArtistGender"
+            android:textColor="@color/black"
+            android:textSize="15sp"
+            android:layout_marginTop="15dp"
+            android:layout_marginStart="40dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/detailsArtistBioLabel" />
+
+        <TextView
+            android:id="@+id/detailsArtistGenderEdit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:text="@string/detailsDefault"
+            android:textColor="@color/black"
+            android:textSize="15sp"
+            android:layout_marginTop="15dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="40dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/detailsArtistGenderLabel"
+            app:layout_constraintTop_toBottomOf="@+id/detailsArtistBioEdit" />
+
+        <TextView
+            android:id="@+id/detailsTypeOfArtLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:text="@string/detailsArtType"
+            android:textColor="@color/black"
+            android:textSize="15sp"
+            android:layout_marginTop="15dp"
+            android:layout_marginStart="40dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/detailsArtistGenderLabel" />
+
+        <TextView
+            android:id="@+id/detailsTypeOfArtEdit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:text="@string/detailsDefault"
+            android:textColor="@color/black"
+            android:textSize="15sp"
+            android:layout_marginTop="15dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="40dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/detailsTypeOfArtLabel"
+            app:layout_constraintTop_toBottomOf="@+id/detailsArtistGenderEdit" />
+
+        <TextView
+            android:id="@+id/detailsClassificationLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="15dp"
+            android:padding="5dp"
+            android:text="@string/detailsArtClassification"
+            android:textColor="@color/black"
+            android:textSize="15sp"
+            app:layout_constraintBottom_toTopOf="@+id/linearLayoutCompat2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/detailsTypeOfArtLabel" />
+
+        <TextView
+            android:id="@+id/detailsClassificationEdit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="15dp"
+            android:padding="5dp"
+            android:text="@string/detailsDefault"
+            android:textColor="@color/black"
+            android:textSize="15sp"
+            app:layout_constraintBottom_toTopOf="@+id/linearLayoutCompat2"
+            app:layout_constraintStart_toEndOf="@+id/detailsClassificationLabel"
+            app:layout_constraintTop_toBottomOf="@+id/detailsTypeOfArtEdit"
+            app:layout_goneMarginStart="5dp" />
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/linearLayoutCompat2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="2"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <Button
+                android:id="@+id/detailsGoBackButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/resultsGoBack"
+                android:layout_weight="1"
+                android:layout_margin="10dp" />
+
+            <Button
+                android:id="@+id/detailsMenuButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/resultsGoBackToMain"
+                android:layout_weight="1"
+                android:layout_margin="10dp"
+                />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</ScrollView>

@@ -5,7 +5,7 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
-data class Object(
+data class Art(
     @Json(name = "accessionNumber")
     val accessionNumber: String,
     @Json(name = "accessionYear")
@@ -41,7 +41,7 @@ data class Object(
     @Json(name = "classification")
     val classification: String,
     @Json(name = "constituents")
-    val constituents: List<Constituent>,
+    val constituents: List<Constituent>?,
     @Json(name = "country")
     val country: String,
     @Json(name = "county")
@@ -75,7 +75,7 @@ data class Object(
     @Json(name = "locus")
     val locus: String,
     @Json(name = "measurements")
-    val measurements: List<Measurement>,
+    val measurements: List<Measurement>?,
     @Json(name = "medium")
     val medium: String,
     @Json(name = "metadataDate")
@@ -117,7 +117,7 @@ data class Object(
     @Json(name = "subregion")
     val subregion: String,
     @Json(name = "tags")
-    val tags: List<Tag>,
+    val tags: List<Tag>?,
     @Json(name = "title")
     val title: String
 )

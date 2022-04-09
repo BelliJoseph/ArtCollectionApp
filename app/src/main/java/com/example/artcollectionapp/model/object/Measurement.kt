@@ -7,7 +7,7 @@ import com.squareup.moshi.JsonClass
 @JsonClass(generateAdapter = true)
 data class Measurement(
     @Json(name = "elementDescription")
-    val elementDescription: Any,
+    val elementDescription: String?,
     @Json(name = "elementMeasurements")
     val elementMeasurements: ElementMeasurements,
     @Json(name = "elementName")

@@ -6,10 +6,10 @@ import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
 data class ElementMeasurements(
-    @Json(name = "Depth")
-    val depth: Double,
-    @Json(name = "Height")
-    val height: Double,
-    @Json(name = "Width")
-    val width: Double
+    @Json(name = "depth")
+    val depth: Double?,
+    @Json(name = "height")
+    val height: Double?,
+    @Json(name = "width")
+    val width: Double?
 )

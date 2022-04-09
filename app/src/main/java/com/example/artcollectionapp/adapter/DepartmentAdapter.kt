@@ -6,7 +6,6 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.artcollectionapp.R
-import com.example.artcollectionapp.model.department.Department
 import com.example.artcollectionapp.model.department.DepartmentX
 
 class DepartmentAdapter(
@@ -47,9 +46,9 @@ class DepartmentViewHolder(
 
     private val department: TextView = artView.findViewById(R.id.departmentName)
 
-        fun bind(departmentx: DepartmentX, departmentClickAdapter: DepartmentClickAdapter){
+        fun bind(departmentX: DepartmentX, departmentClickAdapter: DepartmentClickAdapter){
 
-            department.text = departmentx.displayName
+            department.text = departmentX.displayName
 
         }
 }

@@ -200,7 +200,7 @@
         app:layout_constraintTop_toBottomOf="@+id/searchYearEndEdit" />
 
     <TextView
-        android:id="@+id/searchNothingEnteredError"
+        android:id="@+id/searchNoKeywordEnteredError"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
@@ -222,5 +222,11 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <ProgressBar
+        android:id="@+id/searchProgressBar"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

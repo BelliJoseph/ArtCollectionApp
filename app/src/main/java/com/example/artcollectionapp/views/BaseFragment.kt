@@ -1,6 +1,7 @@
 package com.example.artcollectionapp.views
 
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import com.example.artcollectionapp.repository.ArtRepository
 import com.example.artcollectionapp.viewModel.ArtViewModel
@@ -11,5 +12,5 @@ import javax.inject.Inject
 @AndroidEntryPoint
 open class BaseFragment : Fragment(){
 
-    val artViewModel: ArtViewModel by viewModels()
+    val artViewModel: ArtViewModel by activityViewModels()
 }

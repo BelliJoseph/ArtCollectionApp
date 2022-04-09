@@ -2,7 +2,7 @@ package com.example.artcollectionapp.views
 
 import android.app.AlertDialog
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,6 +15,7 @@ import com.example.artcollectionapp.adapter.DepartmentClickAdapter
 import com.example.artcollectionapp.databinding.FragmentDepartmentsBinding
 import com.example.artcollectionapp.model.department.Department
 import com.example.artcollectionapp.model.department.DepartmentX
+import com.example.artcollectionapp.model.search.Search
 import com.example.artcollectionapp.viewModel.ResultState
 
 
@@ -38,7 +39,7 @@ class DepartmentsFragment : BaseFragment(), DepartmentClickAdapter {
             adapter = departmentAdapter
         }
 
-        artViewModel.artLiveData.observe(viewLifecycleOwner){ state ->
+        artViewModel.departmentLiveData.observe(viewLifecycleOwner){ state ->
             when(state){
                 is ResultState.LOADING ->{
                     binding.departmentsLoading.visibility = View.VISIBLE
@@ -60,6 +61,31 @@ class DepartmentsFragment : BaseFragment(), DepartmentClickAdapter {
             }
         }
 
+        artViewModel.artLiveData.observe(viewLifecycleOwner){ state ->
+            when(state){
+                is ResultState.LOADING ->{
+                    binding.departmentsLoading.visibility = View.VISIBLE
+                }
+                is ResultState.SUCCESS<*> ->{
+                    Log.d("onDepartmentClicked", "entered Success")
+                    val objectList = state.response as Search
+                    binding.departmentsLoading.visibility = View.GONE
+                    artViewModel.resultsFullList.clear()
+                    artViewModel.resultsFullList.addAll(objectList.objectIDs)
+                    findNavController().navigate(R.id.action_DepartmentFragment_to_DisplayFragment)
+                }
+                is ResultState.ERROR ->{
+                    AlertDialog.Builder(requireContext())
+                        .setMessage("There was an Error getting the list of Art")
+                        .setPositiveButton("Dismiss"){
+                                DialogInterface, i ->
+                            DialogInterface.dismiss() }
+                        .create()
+                        .show()
+                }
+            }
+        }
+
         artViewModel.getDepartmentIDs()
 
         // Inflate the layout for this fragment
@@ -67,8 +93,13 @@ class DepartmentsFragment : BaseFragment(), DepartmentClickAdapter {
     }
 
     override fun onDepartmentClicked(departmentx: DepartmentX) {
-        artViewModel.departmentChoice = departmentx
-        findNavController().navigate(R.id.action_DepartmentFragment_to_DisplayFragment)
+        Log.d("onDepartmentClicked","entered function")
+        artViewModel.getObjectsByDepartment(departmentx.departmentId)
+    }
+
+    override fun onStop() {
+        super.onStop()
+        artViewModel.artLiveData.removeObservers(viewLifecycleOwner)
     }
 
 
