@@ -47,7 +47,7 @@ class ResultsAdapter(
             resultsClickAdapter.onResultsClicked(result)
         }
 
-        holder.bind(result, resultsClickAdapter)
+        holder.bind(result)
     }
 
     override fun getItemCount(): Int = resultsList.size
@@ -64,7 +64,7 @@ class ResultsViewHolder(
     private val culture: TextView = resultsView.findViewById(R.id.resultsCulture)
     private val artWork: ImageView = resultsView.findViewById(R.id.resultItemImage)
 
-    fun bind(art: Art, resultsClickAdapter: ResultsClickAdapter){
+    fun bind(art: Art){
 
         artistName.text = art.artistDisplayName
         artName.text = art.title

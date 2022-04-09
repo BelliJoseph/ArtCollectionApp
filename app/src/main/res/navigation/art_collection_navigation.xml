@@ -56,6 +56,9 @@
         tools:layout="@layout/fragment_details"
         android:name="com.example.artcollectionapp.views.DetailsFragment">
 
+        <action
+            android:id="@+id/action_DetailsFragment_to_MainFragment"
+            app:destination="@id/MainFragment" />
     </fragment>
 
 </navigation>
