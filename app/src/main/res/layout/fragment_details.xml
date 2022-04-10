@@ -56,7 +56,7 @@
             android:id="@+id/detailsCultureLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
+            android:layout_marginStart="15dp"
             android:layout_marginTop="20dp"
             android:text="@string/detailsArtCulture"
             android:textColor="@color/black"
@@ -67,195 +67,175 @@
 
         <TextView
             android:id="@+id/detailsCultureEdit"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:padding="5dp"
             android:text="@string/detailsDefault"
             android:textColor="@color/black"
             android:textSize="15sp"
-            android:padding="5dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginStart="5dp"
-            android:layout_marginEnd="10dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="20dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/detailsCultureLabel"
-            app:layout_constraintTop_toBottomOf="@+id/detailsImage2" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/detailsCultureLabel" />
 
         <TextView
             android:id="@+id/detailsPeriodLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:padding="5dp"
             android:text="@string/detailsArtPeriod"
             android:textColor="@color/black"
             android:textSize="15sp"
-            android:padding="5dp"
-            android:layout_marginTop="15dp"
-            android:layout_marginStart="20dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/detailsCultureLabel" />
+            app:layout_constraintTop_toBottomOf="@+id/detailsCultureEdit" />
 
         <TextView
             android:id="@+id/detailsPeriodEdit"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="5dp"
             android:text="@string/detailsDefault"
-            android:textSize="15sp"
             android:textColor="@color/black"
-            android:layout_marginTop="15dp"
-            android:layout_marginStart="5dp"
-            android:layout_marginEnd="10dp"
+            android:textSize="15sp"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="20dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/detailsPeriodLabel"
-            app:layout_constraintTop_toBottomOf="@+id/detailsCultureEdit" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/detailsPeriodLabel" />
 
         <TextView
             android:id="@+id/detailsArtistNameLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
             android:padding="5dp"
             android:text="@string/detailsArtistName"
             android:textColor="@color/black"
             android:textSize="15sp"
-            android:layout_marginTop="15dp"
-            android:layout_marginStart="20dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/detailsPeriodLabel" />
+            app:layout_constraintTop_toBottomOf="@+id/detailsPeriodEdit" />
 
         <TextView
             android:id="@+id/detailsArtistNameEdit"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="5dp"
             android:text="@string/detailsDefault"
             android:textColor="@color/black"
             android:textSize="15sp"
-            android:maxLines="2"
-            android:layout_marginTop="15dp"
-            android:layout_marginStart="5dp"
-            android:layout_marginEnd="10dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="20dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/detailsArtistNameLabel"
-            app:layout_constraintTop_toBottomOf="@+id/detailsPeriodEdit" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/detailsArtistNameLabel" />
 
         <TextView
             android:id="@+id/detailsArtistBioLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
             android:padding="5dp"
             android:text="@string/detailsArtistBio"
             android:textColor="@color/black"
             android:textSize="15sp"
-            android:layout_marginTop="15dp"
-            android:layout_marginStart="20dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/detailsArtistNameLabel" />
+            app:layout_constraintTop_toBottomOf="@+id/detailsArtistNameEdit" />
 
         <TextView
             android:id="@+id/detailsArtistBioEdit"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="5dp"
             android:text="@string/detailsDefault"
             android:textColor="@color/black"
             android:textSize="15sp"
-            android:maxLines="2"
-            android:layout_marginTop="15dp"
-            android:layout_marginStart="5dp"
-            android:layout_marginEnd="10dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="20dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/detailsArtistBioLabel"
-            app:layout_constraintTop_toBottomOf="@+id/detailsArtistNameEdit" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/detailsArtistBioLabel" />
 
         <TextView
             android:id="@+id/detailsArtistGenderLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
             android:padding="5dp"
             android:text="@string/detailsArtistGender"
             android:textColor="@color/black"
             android:textSize="15sp"
-            android:layout_marginTop="15dp"
-            android:layout_marginStart="20dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/detailsArtistBioLabel" />
+            app:layout_constraintTop_toBottomOf="@+id/detailsArtistBioEdit" />
 
         <TextView
             android:id="@+id/detailsArtistGenderEdit"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="5dp"
             android:text="@string/detailsDefault"
             android:textColor="@color/black"
             android:textSize="15sp"
-            android:layout_marginTop="15dp"
-            android:layout_marginStart="5dp"
-            android:layout_marginEnd="10dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="20dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/detailsArtistGenderLabel"
-            app:layout_constraintTop_toBottomOf="@+id/detailsArtistBioEdit" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/detailsArtistGenderLabel" />
 
         <TextView
             android:id="@+id/detailsTypeOfArtLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
             android:padding="5dp"
             android:text="@string/detailsArtType"
             android:textColor="@color/black"
             android:textSize="15sp"
-            android:layout_marginTop="15dp"
-            android:layout_marginStart="20dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/detailsArtistGenderLabel" />
+            app:layout_constraintTop_toBottomOf="@+id/detailsArtistGenderEdit" />
 
 
         <TextView
             android:id="@+id/detailsTypeOfArtEdit"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginTop="15dp"
-            android:maxLines="2"
-            android:gravity="start"
             android:padding="5dp"
             android:text="@string/detailsDefault"
             android:textColor="@color/black"
             android:textSize="15sp"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toEndOf="@+id/detailsTypeOfArtLabel"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="20dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/detailsArtistGenderEdit" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/detailsTypeOfArtLabel" />
 
         <TextView
             android:id="@+id/detailsClassificationLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="15dp"
+            android:layout_marginStart="15dp"
             android:padding="5dp"
             android:text="@string/detailsArtClassification"
             android:textColor="@color/black"
             android:textSize="15sp"
-            app:layout_constraintBottom_toTopOf="@+id/linearLayoutCompat2"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/detailsTypeOfArtLabel" />
+            app:layout_constraintTop_toBottomOf="@+id/detailsTypeOfArtEdit" />
 
         <TextView
             android:id="@+id/detailsClassificationEdit"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="4dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginTop="15dp"
             android:padding="5dp"
             android:text="@string/detailsDefault"
             android:textColor="@color/black"
             android:textSize="15sp"
-            android:maxLines="2"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="20dp"
             app:layout_constraintBottom_toTopOf="@+id/linearLayoutCompat2"
-            app:layout_constraintStart_toEndOf="@+id/detailsClassificationLabel"
-            app:layout_constraintTop_toBottomOf="@+id/detailsTypeOfArtEdit"
-            app:layout_goneMarginStart="5dp" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/detailsClassificationLabel" />
 
         <androidx.appcompat.widget.LinearLayoutCompat
             android:id="@+id/linearLayoutCompat2"

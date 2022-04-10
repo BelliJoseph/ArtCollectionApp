@@ -34,6 +34,9 @@ class DetailsFragment : BaseFragment() {
         }
 
         binding.detailsMenuButton.setOnClickListener {
+            artViewModel.currentListInRecycler.clear()
+            artViewModel.resultsGoBack = false
+            artViewModel.resultsFullList.clear()
             findNavController().navigate(R.id.action_DetailsFragment_to_MainFragment)
         }
 

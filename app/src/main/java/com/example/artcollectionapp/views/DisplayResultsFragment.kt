@@ -65,6 +65,7 @@ class DisplayResultsFragment : BaseFragment(), ResultsClickAdapter {
             artViewModel.currentListInRecycler.clear()
             resultsAdapter.clearList()
             artViewModel.resultsGoBack = false
+            artViewModel.resultsFullList.clear()
             if(artViewModel.navigationHelper == NavigationHelper.DEPARTMENT_FRAGMENT){
                 findNavController().navigate(R.id.action_DisplayFragment_to_DepartmentFragment)
             }
@@ -78,6 +79,7 @@ class DisplayResultsFragment : BaseFragment(), ResultsClickAdapter {
             artViewModel.currentListInRecycler.clear()
             resultsAdapter.clearList()
             artViewModel.resultsGoBack = false
+            artViewModel.resultsFullList.clear()
             findNavController().navigate(R.id.action_DisplayFragment_to_MainFragment)
         }
 
