@@ -22,5 +22,4 @@ class MainFragment : BaseFragment() {
         return binding.root
     }
 
-
 }

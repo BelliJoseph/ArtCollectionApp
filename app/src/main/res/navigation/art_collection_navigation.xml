@@ -48,6 +48,12 @@
         <action
             android:id="@+id/action_DisplayFragment_to_MainFragment"
             app:destination="@id/MainFragment" />
+        <action
+            android:id="@+id/action_DisplayFragment_to_DepartmentFragment"
+            app:destination="@id/DepartmentFragment" />
+        <action
+            android:id="@+id/action_DisplayFragment_to_SearchFragment"
+            app:destination="@id/SearchFragment" />
     </fragment>
 
     <fragment

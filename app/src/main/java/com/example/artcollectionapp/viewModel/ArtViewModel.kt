@@ -10,6 +10,7 @@ import com.example.artcollectionapp.model.`object`.Art
 import com.example.artcollectionapp.model.department.DepartmentX
 import com.example.artcollectionapp.model.search.Search
 import com.example.artcollectionapp.repository.ArtRepository
+import com.example.artcollectionapp.utils.NavigationHelper
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.launch
@@ -35,8 +36,10 @@ class ArtViewModel @Inject constructor(
     var currentListInRecycler: MutableList<Art> = mutableListOf()
 
     var currentResultsRecyclerPosition: Int = 0
-//    var resultsFirstCall: Boolean = true
+
     var resultsGoBack: Boolean = false
+
+    var navigationHelper: NavigationHelper = NavigationHelper.NO_FRAGMENT
 
     private var resultsToRECYCLER = mutableListOf<Art>()
 
@@ -200,8 +203,18 @@ class ArtViewModel @Inject constructor(
         return Validation(dateEntered, yearFormatted, bothYearsEntered, keywordEntered)
     }
 
+    fun clearDepartmentLiveData(){
+        _departmentLiveData.postValue(null)
+    }
+
+    fun clearArtLiveData(){
+        _artLiveData.postValue(null)
+    }
+
     fun clearArtListLiveData(){
         _artListLiveData.postValue(null)
     }
+
+
 
 }

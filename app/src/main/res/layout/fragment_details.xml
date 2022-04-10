@@ -56,7 +56,7 @@
             android:id="@+id/detailsCultureLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="40dp"
+            android:layout_marginStart="20dp"
             android:layout_marginTop="20dp"
             android:text="@string/detailsArtCulture"
             android:textColor="@color/black"
@@ -75,7 +75,7 @@
             android:padding="5dp"
             android:layout_marginTop="20dp"
             android:layout_marginStart="5dp"
-            android:layout_marginEnd="40dp"
+            android:layout_marginEnd="10dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/detailsCultureLabel"
             app:layout_constraintTop_toBottomOf="@+id/detailsImage2" />
@@ -89,7 +89,7 @@
             android:textSize="15sp"
             android:padding="5dp"
             android:layout_marginTop="15dp"
-            android:layout_marginStart="40dp"
+            android:layout_marginStart="20dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/detailsCultureLabel" />
 
@@ -103,7 +103,7 @@
             android:textColor="@color/black"
             android:layout_marginTop="15dp"
             android:layout_marginStart="5dp"
-            android:layout_marginEnd="40dp"
+            android:layout_marginEnd="10dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/detailsPeriodLabel"
             app:layout_constraintTop_toBottomOf="@+id/detailsCultureEdit" />
@@ -117,7 +117,7 @@
             android:textColor="@color/black"
             android:textSize="15sp"
             android:layout_marginTop="15dp"
-            android:layout_marginStart="40dp"
+            android:layout_marginStart="20dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/detailsPeriodLabel" />
 
@@ -132,7 +132,7 @@
             android:maxLines="2"
             android:layout_marginTop="15dp"
             android:layout_marginStart="5dp"
-            android:layout_marginEnd="40dp"
+            android:layout_marginEnd="10dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/detailsArtistNameLabel"
             app:layout_constraintTop_toBottomOf="@+id/detailsPeriodEdit" />
@@ -146,7 +146,7 @@
             android:textColor="@color/black"
             android:textSize="15sp"
             android:layout_marginTop="15dp"
-            android:layout_marginStart="40dp"
+            android:layout_marginStart="20dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/detailsArtistNameLabel" />
 
@@ -161,7 +161,7 @@
             android:maxLines="2"
             android:layout_marginTop="15dp"
             android:layout_marginStart="5dp"
-            android:layout_marginEnd="40dp"
+            android:layout_marginEnd="10dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/detailsArtistBioLabel"
             app:layout_constraintTop_toBottomOf="@+id/detailsArtistNameEdit" />
@@ -175,7 +175,7 @@
             android:textColor="@color/black"
             android:textSize="15sp"
             android:layout_marginTop="15dp"
-            android:layout_marginStart="40dp"
+            android:layout_marginStart="20dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/detailsArtistBioLabel" />
 
@@ -189,7 +189,7 @@
             android:textSize="15sp"
             android:layout_marginTop="15dp"
             android:layout_marginStart="5dp"
-            android:layout_marginEnd="40dp"
+            android:layout_marginEnd="10dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/detailsArtistGenderLabel"
             app:layout_constraintTop_toBottomOf="@+id/detailsArtistBioEdit" />
@@ -203,31 +203,34 @@
             android:textColor="@color/black"
             android:textSize="15sp"
             android:layout_marginTop="15dp"
-            android:layout_marginStart="40dp"
+            android:layout_marginStart="20dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/detailsArtistGenderLabel" />
+
 
         <TextView
             android:id="@+id/detailsTypeOfArtEdit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginTop="15dp"
+            android:maxLines="2"
+            android:gravity="start"
             android:padding="5dp"
             android:text="@string/detailsDefault"
             android:textColor="@color/black"
             android:textSize="15sp"
-            android:maxLines="2"
-            android:layout_marginTop="15dp"
-            android:layout_marginStart="5dp"
-            android:layout_marginEnd="40dp"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@+id/detailsTypeOfArtLabel"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/detailsArtistGenderEdit" />
 
         <TextView
             android:id="@+id/detailsClassificationLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="40dp"
+            android:layout_marginStart="20dp"
             android:layout_marginTop="15dp"
             android:padding="5dp"
             android:text="@string/detailsArtClassification"
@@ -242,6 +245,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="4dp"
+            android:layout_marginEnd="10dp"
             android:layout_marginTop="15dp"
             android:padding="5dp"
             android:text="@string/detailsDefault"

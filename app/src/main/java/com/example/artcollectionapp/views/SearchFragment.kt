@@ -10,6 +10,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.artcollectionapp.R
 import com.example.artcollectionapp.databinding.FragmentSearchBinding
 import com.example.artcollectionapp.model.search.Search
+import com.example.artcollectionapp.utils.NavigationHelper
 import com.example.artcollectionapp.viewModel.ResultState
 
 
@@ -67,6 +68,11 @@ class SearchFragment : BaseFragment() {
         return binding.root
     }
 
+    override fun onStop() {
+        super.onStop()
+        artViewModel.clearArtLiveData()
+    }
+
     private fun getListOfArt(){
         if(withDates){
             artViewModel.searchArtWithDates(
@@ -94,6 +100,7 @@ class SearchFragment : BaseFragment() {
                     val objectList: Search = state.response as Search
                     Log.d("getListOfArt","objectList size:" + objectList.total.toString())
                     artViewModel.resultsFullList.addAll(objectList.objectIDs)
+                    artViewModel.navigationHelper = NavigationHelper.SEARCH_FRAGMENT
                     findNavController().navigate(R.id.action_SearchFragment_to_DisplayFragment)
                     Log.d("getListOfArt()", "resultsFullList Total: " + artViewModel.resultsFullList.size.toString())
                 }

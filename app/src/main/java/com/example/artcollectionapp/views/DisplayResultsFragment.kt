@@ -13,6 +13,7 @@ import com.example.artcollectionapp.adapter.ResultsAdapter
 import com.example.artcollectionapp.adapter.ResultsClickAdapter
 import com.example.artcollectionapp.databinding.FragmentDisplayResultsBinding
 import com.example.artcollectionapp.model.`object`.Art
+import com.example.artcollectionapp.utils.NavigationHelper
 import com.example.artcollectionapp.viewModel.ResultState
 
 class DisplayResultsFragment : BaseFragment(), ResultsClickAdapter {
@@ -64,7 +65,13 @@ class DisplayResultsFragment : BaseFragment(), ResultsClickAdapter {
             artViewModel.currentListInRecycler.clear()
             resultsAdapter.clearList()
             artViewModel.resultsGoBack = false
-            findNavController().navigateUp()
+            if(artViewModel.navigationHelper == NavigationHelper.DEPARTMENT_FRAGMENT){
+                findNavController().navigate(R.id.action_DisplayFragment_to_DepartmentFragment)
+            }
+            if(artViewModel.navigationHelper == NavigationHelper.SEARCH_FRAGMENT){
+                findNavController().navigate(R.id.action_DisplayFragment_to_SearchFragment)
+            }
+
         }
 
         binding.resultsGoBackToMenuButton.setOnClickListener {

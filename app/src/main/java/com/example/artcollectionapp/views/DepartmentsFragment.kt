@@ -16,6 +16,7 @@ import com.example.artcollectionapp.databinding.FragmentDepartmentsBinding
 import com.example.artcollectionapp.model.department.Department
 import com.example.artcollectionapp.model.department.DepartmentX
 import com.example.artcollectionapp.model.search.Search
+import com.example.artcollectionapp.utils.NavigationHelper
 import com.example.artcollectionapp.viewModel.ResultState
 
 
@@ -72,6 +73,7 @@ class DepartmentsFragment : BaseFragment(), DepartmentClickAdapter {
                     binding.departmentsLoading.visibility = View.GONE
                     artViewModel.resultsFullList.clear()
                     artViewModel.resultsFullList.addAll(objectList.objectIDs)
+                    artViewModel.navigationHelper = NavigationHelper.DEPARTMENT_FRAGMENT
                     findNavController().navigate(R.id.action_DepartmentFragment_to_DisplayFragment)
                 }
                 is ResultState.ERROR ->{
@@ -100,6 +102,8 @@ class DepartmentsFragment : BaseFragment(), DepartmentClickAdapter {
     override fun onStop() {
         super.onStop()
         artViewModel.artLiveData.removeObservers(viewLifecycleOwner)
+        artViewModel.clearDepartmentLiveData()
+        artViewModel.clearArtLiveData()
     }
 
 
