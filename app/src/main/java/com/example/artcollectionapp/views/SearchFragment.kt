@@ -105,6 +105,7 @@ class SearchFragment : BaseFragment() {
                     Log.d("getListOfArt()", "resultsFullList Total: " + artViewModel.resultsFullList.size.toString())
                 }
                 is ResultState.ERROR ->{
+                    binding.searchProgressBar.visibility = View.GONE
                     AlertDialog.Builder(requireContext())
                         .setMessage("There was a problem getting the list of Art")
                         .setPositiveButton("Dismiss"){
