@@ -7,8 +7,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.artcollectionapp.model.Validation
 import com.example.artcollectionapp.model.`object`.Art
-import com.example.artcollectionapp.model.department.DepartmentX
-import com.example.artcollectionapp.model.search.Search
 import com.example.artcollectionapp.repository.ArtRepository
 import com.example.artcollectionapp.utils.NavigationHelper
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -30,22 +28,28 @@ class ArtViewModel @Inject constructor(
     var beginYear: Int? = null
     var endYear: Int? = null
 
-    //results list
+    //results full list
     var resultsFullList: MutableList<Int> = mutableListOf()
 
+    //list of Art currently in DisplayResults recyclerView
     var currentListInRecycler: MutableList<Art> = mutableListOf()
 
+    //currently visible card (top) of DisplayResults recyclerView -> for navigating back
     var currentResultsRecyclerPosition: Int = 0
 
+    //DisplayResults flag to indicate navigation back instead of fresh list
     var resultsGoBack: Boolean = false
 
+    //DisplayResults uses this to know which fragment it waw navigated from -> GoBack button
     var navigationHelper: NavigationHelper = NavigationHelper.NO_FRAGMENT
 
+    //list of 20 Art results to post to the ResultState
     private var resultsToRECYCLER = mutableListOf<Art>()
 
+    //The clicked piece of Art in DisplayResults -> to be used in Details
     var displayResultsArtChoice: Art? = null
 
-    //result list -> while iterating through list = count (current)
+    //result list -> while iterating through list = count (current starting point)
     var resultCount: Int = 0
     var currentEnd: Int = 0
 
@@ -80,13 +84,12 @@ class ArtViewModel @Inject constructor(
 
         val tempList = getSubList()
         resultCount = currentEnd
-//        currentEnd = 0
         if(tempList.isEmpty()){
+            clearArtListLiveData()
             return
         }
         Log.d("getObjectsInList()","tempList size: " + tempList.size.toString())
         viewModelScope.launch(coroutineDispatcher){
-
             for(index in tempList.indices){
                 val temp = tempList[index]
                 try{
@@ -102,9 +105,7 @@ class ArtViewModel @Inject constructor(
                     _artLiveData.postValue(ResultState.ERROR(error))
                 }
             }
-
             _artListLiveData.postValue(ResultState.SUCCESS(resultsToRECYCLER.toList()))
-
         }
     }
 

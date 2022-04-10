@@ -53,19 +53,4 @@ interface ArtCollectionAPI {
 
     }
 
-    //https://collectionapi.metmuseum.org/public/collection/v1/objects
-    //https://collectionapi.metmuseum.org/public/collection/v1/objects?departmentIds=3|9|12
-    //https://collectionapi.metmuseum.org/public/collection/v1/objects?metadataDate=2018-10-22
-    //https://collectionapi.metmuseum.org/public/collection/v1/objects?metadataDate=2018-10-22&departmentIds=3|9|12
-    //https://collectionapi.metmuseum.org/public/collection/v1/search
-    //https://collectionapi.metmuseum.org/public/collection/v1/search?q=sunflowers
-
-    //has images query
-    //https://collectionapi.metmuseum.org/public/collection/v1/search?hasImages=true&q=Auguste Renoir
-
-    //geolocation and query
-    //https://collectionapi.metmuseum.org/public/collection/v1/search?geoLocation=France&q=flowers
-
-    //date range request
-    //https://collectionapi.metmuseum.org/public/collection/v1/search?dateBegin=1700&dateEnd=1800&q=African
 }

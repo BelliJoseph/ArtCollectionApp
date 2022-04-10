@@ -37,7 +37,7 @@ class DisplayResultsFragment : BaseFragment(), ResultsClickAdapter {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
 
         recyclerView.apply {
             val linearLayoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
@@ -72,7 +72,6 @@ class DisplayResultsFragment : BaseFragment(), ResultsClickAdapter {
             if(artViewModel.navigationHelper == NavigationHelper.SEARCH_FRAGMENT){
                 findNavController().navigate(R.id.action_DisplayFragment_to_SearchFragment)
             }
-
         }
 
         binding.resultsGoBackToMenuButton.setOnClickListener {
@@ -107,7 +106,6 @@ class DisplayResultsFragment : BaseFragment(), ResultsClickAdapter {
                 }
                 is ResultState.ERROR -> {
                 }
-
             }
         }
         if(artViewModel.resultsGoBack){

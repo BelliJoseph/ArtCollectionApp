@@ -32,11 +32,10 @@ class DepartmentAdapter(
             departmentClickAdapter.onDepartmentClicked(department)
         }
 
-        holder.bind(department, departmentClickAdapter)
+        holder.bind(department)
     }
 
     override fun getItemCount(): Int = departmentList.size
-
 
 }
 
@@ -46,7 +45,7 @@ class DepartmentViewHolder(
 
     private val department: TextView = artView.findViewById(R.id.departmentName)
 
-        fun bind(departmentX: DepartmentX, departmentClickAdapter: DepartmentClickAdapter){
+        fun bind(departmentX: DepartmentX){
 
             department.text = departmentX.displayName
 

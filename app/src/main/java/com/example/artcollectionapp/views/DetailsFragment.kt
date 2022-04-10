@@ -20,11 +20,10 @@ class DetailsFragment : BaseFragment() {
 
     private lateinit var artChoice: Art
 
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         artViewModel.displayResultsArtChoice?.let {
             artChoice = it
         }
