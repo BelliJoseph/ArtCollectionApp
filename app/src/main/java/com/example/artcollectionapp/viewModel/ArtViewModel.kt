@@ -34,6 +34,10 @@ class ArtViewModel @Inject constructor(
 
     var currentListInRecycler: MutableList<Art> = mutableListOf()
 
+    var currentResultsRecyclerPosition: Int = 0
+//    var resultsFirstCall: Boolean = true
+    var resultsGoBack: Boolean = false
+
     private var resultsToRECYCLER = mutableListOf<Art>()
 
     var displayResultsArtChoice: Art? = null
@@ -194,6 +198,10 @@ class ArtViewModel @Inject constructor(
         }
 
         return Validation(dateEntered, yearFormatted, bothYearsEntered, keywordEntered)
+    }
+
+    fun clearArtListLiveData(){
+        _artListLiveData.postValue(null)
     }
 
 }

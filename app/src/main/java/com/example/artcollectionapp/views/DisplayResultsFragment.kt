@@ -2,7 +2,6 @@ package com.example.artcollectionapp.views
 
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,10 +14,6 @@ import com.example.artcollectionapp.adapter.ResultsClickAdapter
 import com.example.artcollectionapp.databinding.FragmentDisplayResultsBinding
 import com.example.artcollectionapp.model.`object`.Art
 import com.example.artcollectionapp.viewModel.ResultState
-import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.CoroutineDispatcher
-import okhttp3.Dispatcher
-import javax.inject.Inject
 
 class DisplayResultsFragment : BaseFragment(), ResultsClickAdapter {
 
@@ -30,18 +25,20 @@ class DisplayResultsFragment : BaseFragment(), ResultsClickAdapter {
         ResultsAdapter(this)
     }
 
+    private val recyclerView by lazy{
+        binding.resultsRecyclerView
+    }
+
     private var notCalled: Boolean = true
 
-    private var firstCall: Boolean = true
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
 
-        resultsAdapter.clearList()
-
-        binding.resultsRecyclerView.apply {
+        recyclerView.apply {
             val linearLayoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
             layoutManager = linearLayoutManager
             adapter = resultsAdapter
@@ -65,11 +62,15 @@ class DisplayResultsFragment : BaseFragment(), ResultsClickAdapter {
 
         binding.resultsGoBackButton.setOnClickListener {
             artViewModel.currentListInRecycler.clear()
+            resultsAdapter.clearList()
+            artViewModel.resultsGoBack = false
             findNavController().navigateUp()
         }
 
         binding.resultsGoBackToMenuButton.setOnClickListener {
             artViewModel.currentListInRecycler.clear()
+            resultsAdapter.clearList()
+            artViewModel.resultsGoBack = false
             findNavController().navigate(R.id.action_DisplayFragment_to_MainFragment)
         }
 
@@ -80,10 +81,6 @@ class DisplayResultsFragment : BaseFragment(), ResultsClickAdapter {
     override fun onResume() {
         super.onResume()
 
-        if(artViewModel.currentListInRecycler.isNotEmpty()){
-            resultsAdapter.addList(artViewModel.currentListInRecycler)
-        }
-
         artViewModel.artListLiveData.observe(viewLifecycleOwner) { state ->
             when (state) {
                 is ResultState.LOADING -> {
@@ -93,25 +90,34 @@ class DisplayResultsFragment : BaseFragment(), ResultsClickAdapter {
                     binding.resultsProgressBar.visibility = View.GONE
                     Log.d("DisplayResults","Observe Live data before response")
                     val artList = state.response as List<Art>
-                    notCalled = true
                     Log.d("DisplayResults", "artList size: " + artList.size.toString())
-                    if(firstCall){
-                        firstCall = false
-                        artViewModel.currentListInRecycler.addAll(artList)
-                        resultsAdapter.addList(artList)
-                    }else{
-                        artViewModel.currentListInRecycler.addAll(artList)
-                        resultsAdapter.addMore(artList)
-                    }
+
+                    artViewModel.currentListInRecycler.addAll(artList)
+                    resultsAdapter.addMore(artList)
+                    notCalled = true
                 }
                 is ResultState.ERROR -> {
                 }
 
             }
         }
+        if(artViewModel.resultsGoBack){
+            resultsAdapter.addList(artViewModel.currentListInRecycler)
+            recyclerView.scrollToPosition(
+                artViewModel.currentResultsRecyclerPosition
+            )
+        }else{
+           getArt()
+        }
 
-        getArt()
+    }
 
+    override fun onStop() {
+        super.onStop()
+
+        artViewModel.currentResultsRecyclerPosition =
+            (recyclerView.layoutManager as LinearLayoutManager).findFirstCompletelyVisibleItemPosition()
+        artViewModel.clearArtListLiveData()
     }
 
     private fun getArt(){

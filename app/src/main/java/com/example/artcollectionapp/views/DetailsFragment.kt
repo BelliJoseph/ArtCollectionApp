@@ -1,7 +1,6 @@
 package com.example.artcollectionapp.views
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,6 +9,7 @@ import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.example.artcollectionapp.R
 import com.example.artcollectionapp.databinding.FragmentDetailsBinding
+import com.example.artcollectionapp.model.`object`.Art
 
 
 class DetailsFragment : BaseFragment() {
@@ -18,15 +18,19 @@ class DetailsFragment : BaseFragment() {
         FragmentDetailsBinding.inflate(layoutInflater)
     }
 
-    private val artChoice = artViewModel.displayResultsArtChoice
+    private lateinit var artChoice: Art
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        artViewModel.displayResultsArtChoice?.let {
+            artChoice = it
+        }
 
         binding.detailsGoBackButton.setOnClickListener {
-            findNavController().navigateUp()
+            findNavController().navigate(R.id.action_DetailsFragment_to_DisplayFragment)
         }
 
         binding.detailsMenuButton.setOnClickListener {
@@ -41,7 +45,9 @@ class DetailsFragment : BaseFragment() {
     override fun onResume() {
         super.onResume()
 
-        val text = getString(R.string.detailsTitle, artChoice!!.title)
+        artViewModel.resultsGoBack = true
+
+        val text = getString(R.string.detailsTitle, artChoice.title)
         binding.detailsTitle.text = text
 
         if(artChoice.primaryImage.isEmpty()){

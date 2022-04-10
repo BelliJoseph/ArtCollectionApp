@@ -59,6 +59,9 @@
         <action
             android:id="@+id/action_DetailsFragment_to_MainFragment"
             app:destination="@id/MainFragment" />
+        <action
+            android:id="@+id/action_DetailsFragment_to_DisplayFragment"
+            app:destination="@id/DisplayFragment" />
     </fragment>
 
 </navigation>
