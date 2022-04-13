@@ -3,11 +3,8 @@ package com.example.artcollectionapp.repository
 import com.example.artcollectionapp.model.`object`.Art
 import com.example.artcollectionapp.rest.ArtCollectionAPI
 import com.example.artcollectionapp.viewModel.ResultState
-import kotlinx.coroutines.CoroutineDispatcher
-import kotlinx.coroutines.CoroutineScope
 import javax.inject.Inject
 import kotlinx.coroutines.flow.*
-import kotlinx.coroutines.launch
 import retrofit2.Response
 import java.lang.Exception
 

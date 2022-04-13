@@ -1,5 +1,6 @@
 package com.example.artcollectionapp.repository
 
+import com.example.artcollectionapp.model.`object`.Art
 import com.example.artcollectionapp.model.department.Department
 import com.example.artcollectionapp.model.department.DepartmentX
 import com.example.artcollectionapp.model.search.Search
@@ -16,6 +17,7 @@ import io.mockk.*
 import org.junit.After
 import org.junit.Before
 import org.junit.Test
+import retrofit2.Response
 
 @ExperimentalCoroutinesApi
 class ArtRepositoryImplTest {
@@ -23,6 +25,7 @@ class ArtRepositoryImplTest {
     private val testDispatcher = UnconfinedTestDispatcher()
     private val mockArtCollectionApi = mockk<ArtCollectionAPI>(relaxed = true)
     private val mockDepartmentX = mockk<DepartmentX>(relaxed = true)
+    private val mockArt = mockk<Response<Art>>(relaxed = true)
 
     private lateinit var target: ArtRepository
 
@@ -375,6 +378,19 @@ class ArtRepositoryImplTest {
         coVerify { mockArtCollectionApi.searchArtWithoutDates(
             false,null,"art"
         ) }
+    }
+
+    @Test
+    fun `get object ID that returns an Art object`() = runTest {
+        //Assign - Given
+        coEvery { mockArtCollectionApi.getObjectID(1) } returns mockArt
+
+        //Action - When
+        val result = target.getObjectId(1)
+
+        //Assertion - Then
+        assertThat(result).isEqualTo(mockArt)
+        coVerify { mockArtCollectionApi.getObjectID(1) }
     }
 
 }

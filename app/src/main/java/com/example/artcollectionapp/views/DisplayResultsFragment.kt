@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -105,6 +106,8 @@ class DisplayResultsFragment : BaseFragment(), ResultsClickAdapter {
                     notCalled = true
                 }
                 is ResultState.ERROR -> {
+
+                    Toast.makeText(requireContext(), "There was " + state.error + " errors", Toast.LENGTH_LONG).show()
                 }
             }
         }

@@ -1,12 +1,13 @@
 package com.example.artcollectionapp.viewModel
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.artcollectionapp.model.Validation
 import com.example.artcollectionapp.model.`object`.Art
+import com.example.artcollectionapp.model.department.Department
+import com.example.artcollectionapp.model.search.Search
 import com.example.artcollectionapp.repository.ArtRepository
 import com.example.artcollectionapp.utils.NavigationHelper
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -80,7 +81,8 @@ class ArtViewModel @Inject constructor(
 
     fun getObjectsInList(){
         _artListLiveData.postValue(ResultState.LOADING)
-        Log.d("getObjectsInList()","resultsFullList size: " + resultsFullList.size.toString())
+
+        var errorCount: Int = 0
 
         val tempList = getSubList()
         resultCount = currentEnd
@@ -88,10 +90,9 @@ class ArtViewModel @Inject constructor(
             clearArtListLiveData()
             return
         }
-        Log.d("getObjectsInList()","tempList size: " + tempList.size.toString())
+
         viewModelScope.launch(coroutineDispatcher){
             for(index in tempList.indices){
-                val temp = tempList[index]
                 try{
                     val response = artRepository.getObjectId(tempList[index])
                     if(response.isSuccessful){
@@ -102,10 +103,16 @@ class ArtViewModel @Inject constructor(
                         throw Exception("Get ObjectId unsuccessful")
                     }
                 }catch (error: Exception){
-                    _artLiveData.postValue(ResultState.ERROR(error))
+//                    _artLiveData.postValue(ResultState.ERROR(error))
+                    ++errorCount
                 }
             }
-            _artListLiveData.postValue(ResultState.SUCCESS(resultsToRECYCLER.toList()))
+            if(errorCount > 0){
+                _artListLiveData.postValue(ResultState.ERROR(Exception(errorCount.toString())))
+            }
+            if(resultsToRECYCLER.isNotEmpty()){
+                _artListLiveData.postValue(ResultState.SUCCESS(resultsToRECYCLER.toList()))
+            }
         }
     }
 
@@ -165,8 +172,8 @@ class ArtViewModel @Inject constructor(
         currentEnd = resultCount + 20
 
         if(resultsFullList.size > resultCount) {
-            if ( currentEnd > (resultsFullList.size - 1) ) {
-                currentEnd = resultsFullList.size - 1
+            if ( currentEnd > (resultsFullList.size) ) {
+                currentEnd = resultsFullList.size
             }
 
         }else {
@@ -204,17 +211,11 @@ class ArtViewModel @Inject constructor(
         return Validation(dateEntered, yearFormatted, bothYearsEntered, keywordEntered)
     }
 
-    fun clearDepartmentLiveData(){
-        _departmentLiveData.postValue(null)
-    }
+    fun clearDepartmentLiveData() = _departmentLiveData.postValue(ResultState.DEFAULT)
 
-    fun clearArtLiveData(){
-        _artLiveData.postValue(null)
-    }
+    fun clearArtLiveData() = _artLiveData.postValue(ResultState.DEFAULT)
 
-    fun clearArtListLiveData(){
-        _artListLiveData.postValue(null)
-    }
+    fun clearArtListLiveData() = _artListLiveData.postValue(ResultState.DEFAULT)
 
 
 
